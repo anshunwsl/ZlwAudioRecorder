@@ -125,6 +125,15 @@ public class RecordHelper {
         } else {
             state = RecordState.STOP;
             notifyState();
+            //
+            // 修复内存泄漏问题
+            //@author anshunwsl agis216@126.com
+            mainHandler.removeCallbacksAndMessages(null);
+            audioRecordThread.interrupt();
+            //
+            mainHandler=null;
+            audioRecordThread=null;
+//            recordResultListener=null;
         }
     }
 

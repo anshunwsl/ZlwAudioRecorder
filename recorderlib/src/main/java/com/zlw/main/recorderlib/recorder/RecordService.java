@@ -91,6 +91,12 @@ public class RecordService extends Service {
         Intent intent = new Intent(context, RecordService.class);
         intent.putExtra(ACTION_NAME, ACTION_STOP_RECORD);
         context.startService(intent);
+        //
+        // 修复内存泄漏问题
+        // @author anshunwsl agis216@126.com
+        // @date 2019-07-29
+        //
+        context=null;
     }
 
     public static void resumeRecording(Context context) {
